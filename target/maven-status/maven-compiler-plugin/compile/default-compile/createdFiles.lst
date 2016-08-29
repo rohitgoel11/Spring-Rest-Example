@@ -1,2 +1,4 @@
-com\mkyong\web\controller\HelloController.class
 com\mkyong\web\controller\Staff.class
+com\mkyong\web\controller\HelloController.class
+com\mkyong\web\controller\MyData.class
+com\mkyong\web\controller\StaffArray.class

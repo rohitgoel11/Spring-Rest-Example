@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,12 +18,15 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 @RestController
 public class HelloController {
+	
+	private static int count=0;
 
 	@RequestMapping(value = "/staff", method = RequestMethod.GET, headers = "Accept=application/json")
-	public List<Staff> getCountries() {
+	public StaffArray getStaff() {
+		StaffArray list=new StaffArray();
 		List<Staff> staffList = new ArrayList<Staff>();
 		try {
-
+			
 			Staff staff = null;
 			JsonFactory factory = new JsonFactory();
 			JsonParser parser = factory.createParser(new File("D:/My docs/file.json.txt"));
@@ -72,6 +76,20 @@ public class HelloController {
 			e.printStackTrace();
 		}
 		System.out.println(staffList.size());
-		return staffList;
+		list.setMystaff(staffList);
+		return list;
+	}
+	
+	@RequestMapping(value = "/staff/{index}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public MyData getStaffById(@PathVariable int index) {
+		
+		MyData data= new MyData();
+		data.setGuid("My GUID" + index);
+		data.setId("My ID" +index+100);
+		data.setIndex(index);
+		count++;
+		System.out.println("Response sent:"+ count);
+		return data;
+		
 	}
 }
