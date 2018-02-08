@@ -28,6 +28,7 @@ public class HelloController {
 		try {
 			
 			Staff staff = null;
+			int a=0;
 			JsonFactory factory = new JsonFactory();
 			JsonParser parser = factory.createParser(new File("D:/My docs/file.json.txt"));
 
